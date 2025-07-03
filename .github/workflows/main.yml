@@ -1,0 +1,27 @@
+import (### 
+	"fmt"
+	"log"
+	"net/http"
+)
+func main() {
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		switch r.URL.Path {
+		case "/hello":
+			fmt.Fprintf(w, "Hello, World!")
+		case "/name":
+			fmt.Fprintf(w, "TENET")
+		case "/RegNumber":
+			fmt.Fprintf(w, "Cat")
+		case "/Department":
+			fmt.Fprintf(w, "Chess")
+		case "/Color":
+			fmt.Fprintf(w, "Black")
+		default:
+			http.NotFound(w, r)
+		}
+	})
+
+	fmt.Printf("Server running (port=8080), route: http://localhost:8080/hello\n")
+	if err := http.ListenAndServe(":8080", nil); err != nil {
+		log.Fatal(err)
+	}}
